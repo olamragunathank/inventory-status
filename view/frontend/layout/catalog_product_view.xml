@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+        <css src="Mindsprint_StockStatus::css/stockstatus.css"/>
+    </head>
+    <body>
+		<referenceContainer name="content">
+            <block after="product.info.details" class="Mindsprint\StockStatus\Block\Catalog\Product\View" name="stockstatus" 
+			template="Mindsprint_StockStatus::view.phtml" />
+        </referenceContainer>
+		<move element="stockstatus" destination="product.info.addtocart" before="product.info.addtocart"/>
+    </body>
+</page>

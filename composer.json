@@ -1,0 +1,26 @@
+{
+    "name": "mindsprint/module-stockstatus",
+    "description": "",
+
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": "Mindsprint License",
+    "authors": [
+        {
+          "name": "Mindsprint",
+          "email": "contactus@mindsprint.org",
+          "homepage": "https://www.mindsprint.org",
+          "role": "Leader"
+        }
+    ],
+
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Mindsprint\\StockStatus\\": ""
+        }
+    }
+
+}

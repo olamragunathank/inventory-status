@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Mindsprint_StockStatus::stockstatus" title="Mindsprint" module="Mindsprint_StockStatus" sortOrder="51" resource="Mindsprint_StockStatus::stockstatus"/>
+        <add id="Mindsprint_StockStatus::stockstatus_configuration" title="Configuration" module="Mindsprint_StockStatus" sortOrder="99" parent="Mindsprint_StockStatus::stockstatus" action="adminhtml/system_config/edit/section/stockstatus" resource="Mindsprint_StockStatus::stockstatus_configuration"/>
+    </menu>
+</config>

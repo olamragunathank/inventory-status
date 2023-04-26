@@ -1,0 +1,49 @@
+<?php
+$enabled = $block->statusEnabled();
+if ($enabled==1):
+    $stockStatus = $block->currentProductStatus();
+    $stock = $stockStatus['stock'];
+    ?>
+<div class="progress-wrapper">
+    <div class="progress-header">
+        <span class="progress-icon">&#9432;&#xfe0e;</span>
+        <label class="progress-label"> </label>
+    </div>
+    <div class="progress-bar"></div>
+</div>
+<script>
+let stockLevel = <?= /* @noEscape */ $stockStatus['mediumStockQty'] ?>+1;
+const progressLabel = document.querySelector(".progress-label");
+const progressBar = document.querySelector(".progress-bar");
+const progressIcon = document.querySelector(".progress-icon");
+const progressBarInner = document.createElement("div");
+progressBarInner.id = "progress-bar-inner";
+progressBar.appendChild(progressBarInner);
+function setProgress(stockLevel) {
+    if (<?= /* @noEscape */ $stock ?> > <?= /* @noEscape */ $stockStatus['mediumStockQty'] ?>) {
+        progressBarInner.style.width = <?= /* @noEscape */ $stockStatus['stock'] ?> + "%";
+        progressBarInner.style.backgroundColor = "<?= /* @noEscape */ $stockStatus['hightStockColour'] ?>";
+        progressLabel.innerHTML = "<?= /* @noEscape */ str_replace("%", $stock, $stockStatus['hightStockError']) ?>";
+        progressIcon.style.display = "none";
+    } else if (<?= /* @noEscape */ $stock ?> > <?= /* @noEscape */ $stockStatus['lowStockQty'] ?> 
+        && <?= /* @noEscape */ $stock ?> <= <?= /* @noEscape */ $stockStatus['mediumStockQty'] ?>) {
+        progressBarInner.style.width = <?= /* @noEscape */ $stockStatus['mediumStockQty'] ?> + "%";
+        progressBarInner.style.backgroundColor = "<?= /* @noEscape */ $stockStatus['mediumStockColour'] ?>";
+        progressLabel.innerHTML = "<?= /* @noEscape */ str_replace("%", $stock, $stockStatus['mediumstockError']) ?>";
+        progressIcon.style.color = "<?= /* @noEscape */ $stockStatus['mediumStockColour'] ?>";
+    } else if (<?= /* @noEscape */ $stock ?> > 0 
+        && <?= /* @noEscape */ $stock ?> <= <?= /* @noEscape */ $stockStatus['lowStockQty'] ?>) {
+        progressBarInner.style.width = <?= /* @noEscape */ $stockStatus['lowStockQty'] ?> + "%";
+        progressBarInner.style.backgroundColor = "<?= /* @noEscape */ $stockStatus['lowStockColour'] ?>";
+        progressLabel.innerHTML = "<?= /* @noEscape */ str_replace("%", $stock, $stockStatus['lowstockError']) ?>";
+        progressIcon.style.color = "<?= /* @noEscape */ $stockStatus['lowStockColour'] ?>";
+    } else {
+        progressBarInner.style.width = <?= /* @noEscape */ $stockStatus['stock'] ?> + "%";
+        progressBarInner.style.backgroundColor = "<?= /* @noEscape */ $stockStatus['outofStockColour'] ?>";
+        progressLabel.innerHTML = "<?= /* @noEscape */ str_replace("%", $stock, $stockStatus['outofStockError']) ?>";
+        progressIcon.style.color = "<?= /* @noEscape */ $stockStatus['outofStockColour'] ?>";
+    }
+}
+setProgress(stockLevel);
+</script>
+<?php endif; ?>

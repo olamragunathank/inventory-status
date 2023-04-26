@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="mindsprint" translate="label" sortOrder="10">
+            <label>Mindsprint</label>
+        </tab>
+        <section id="stockstatus" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>StockStatus</label>
+            <tab>mindsprint</tab>
+            <resource>Mindsprint_StockStatus::stockstatus_config</resource>
+            <group id="general" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Configuration</label>
+				<field id="extensions_info" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Extensions Info</label>
+                    <frontend_model>Mindsprint\StockStatus\Block\Adminhtml\System\Config\Form\ExtensionsInfo</frontend_model>
+                </field>
+                <field id="enable" translate="label" type="select" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Module Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+			<group id="stock_status" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Stock Status</label>
+				<field id="hightstockcolour" translate="label comment" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sufficient Stock Level Colour</label>
+					<frontend_model>Mindsprint\StockStatus\Block\Color</frontend_model> 
+                    <validate>validate-hexadecimal-color-length</validate>
+                </field>
+				<field id="hightstockerror" translate="label comment" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sufficient Stock Level Status</label>
+                </field>
+				<field id="mediumstockqty" translate="label comment" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Minimum Stock Level Qty</label>
+                </field>
+				<field id="mediumstockcolour" translate="label comment" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Minimum Stock Level Colour</label>
+					<frontend_model>Mindsprint\StockStatus\Block\Color</frontend_model> 
+                    <validate>validate-hexadecimal-color-length</validate>
+                </field>
+				<field id="mediumstockerror" translate="label comment" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Minimum Stock Level Status</label>
+                </field>
+				<field id="lowstockqty" translate="label comment" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Running Low On Stock Qty</label>
+                </field>
+				<field id="lowstockcolour" translate="label comment" type="text" sortOrder="7" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Running Low On Stock Colour</label>
+					<frontend_model>Mindsprint\StockStatus\Block\Color</frontend_model> 
+                    <validate>validate-hexadecimal-color-length</validate>
+                </field>
+				<field id="lowstockerror" translate="label comment" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Running Low On Stock Status</label>
+                </field>
+				<field id="outofstockcolour" translate="label comment" type="text" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Out of Stock Colour</label>
+					<frontend_model>Mindsprint\StockStatus\Block\Color</frontend_model> 
+                    <validate>validate-hexadecimal-color-length</validate>
+                </field>
+				<field id="outofstockerror" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Out of Stock Status</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
