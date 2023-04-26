@@ -30,3 +30,8 @@ php bin/magento setup:static-content:deploy
 php bin/magento setup:upgrade
 php bin/magento setup:di:compile
 php bin/magento setup:static-content:deploy
+
+## Support
+If you have any issues, please [contact us](mailto:contactus@mindsprint.org)
+then if you still need help, open a bug report in GitHub's
+[issue tracker](https://github.com/olamragunathank/inventory-status/issues).
