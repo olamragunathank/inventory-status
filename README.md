@@ -5,7 +5,7 @@
 This module is required for other Mindsprint extensions for Magento 2
 
 ## Requirements
-  * Magento Community Edition 2.1.x-2.4.x or Magento Enterprise Edition 2.1.x-2.4.x
+  * Magento Community Edition 2.1.x-2.4.x
 
 ## Installation Method 1 - Installing via composer
   * Open command line
@@ -30,6 +30,7 @@ php bin/magento setup:static-content:deploy
 php bin/magento setup:upgrade
 php bin/magento setup:di:compile
 php bin/magento setup:static-content:deploy
+```
 
 ## Support
 If you have any issues, please [contact us](mailto:contactus@mindsprint.org)
