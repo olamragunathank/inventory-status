@@ -37,7 +37,7 @@ class Color extends Field
     protected function _getElementHtml(AbstractElement $element)
     {
         $html = $element->getElementHtml();
-        $cpPath = $this->getViewFileUrl('Webkul_MobikulCore::js');
+        $cpPath = $this->getViewFileUrl('Mindsprint_StockStatus::js');
         if (!$this->_coreRegistry->registry('colorpicker_loaded')) {
             if ($this->fileDriver->isExists($cpPath.'/'.'jscolor.min.js')) {
                 $html .= '<script type="text/javascript" src="' . $cpPath.'/'.'jscolor.min.js"></script>';

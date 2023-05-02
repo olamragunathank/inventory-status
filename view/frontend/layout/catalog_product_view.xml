@@ -8,6 +8,6 @@
             <block after="product.info.details" class="Mindsprint\StockStatus\Block\Catalog\Product\View" name="stockstatus" 
 			template="Mindsprint_StockStatus::view.phtml" />
         </referenceContainer>
-		<move element="stockstatus" destination="product.info.addtocart" before="product.info.addtocart"/>
+		<move element="stockstatus" destination="product.info.form.content" before="product.info.addtocart"/>
     </body>
 </page>
