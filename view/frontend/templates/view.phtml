@@ -14,7 +14,7 @@ if ($enabled==1):
 </div>
 </div>
 <script>
-let stockLevel = <?= /* @noEscape */ $stockStatus['mediumStockQty'] ?>+1;
+let stockLevel = <?= /* @noEscape */ $stock ?>;
 const progressLabel = document.querySelector(".progress-label");
 const progressBar = document.querySelector(".progress-bar");
 const progressIcon = document.querySelector(".progress-icon");
@@ -22,32 +22,24 @@ const progressBarInner = document.createElement("div");
 progressBarInner.id = "progress-bar-inner";
 progressBar.appendChild(progressBarInner);
 function setProgress(stockLevel) {
-    if (<?= /* @noEscape */ $stock ?> > <?= /* @noEscape */ $stockStatus['mediumStockQty'] ?>) {
-        progressBarInner.style.width = <?= /* @noEscape */ $stockStatus['stock'] ?> + "%";
-        progressBarInner.style.backgroundColor = "<?= /* @noEscape */ $stockStatus['hightStockColour'] ?>";
-        progressLabel.innerHTML = "<?= /* @noEscape */ str_replace("%", $stock, $stockStatus['hightStockError']) ?>";
+	progressBarInner.style.width = stockLevel + "%";
+	if (stockLevel > <?= /* @noEscape */ $stockStatus['mediumStockQty'] ?>) {
+		progressBarInner.style.backgroundColor = "<?= /* @noEscape */ $stockStatus['hightStockColour'] ?>";
+		progressLabel.innerHTML = "<?= /* @noEscape */ str_replace("%", $stock, $stockStatus['hightStockError']) ?>";
 		progressIcon.style.content = "url('<?= /* @noEscape */ $block->getViewFileUrl('Mindsprint_StockStatus::images/green-stock.svg'); ?>')";
-    } else if (<?= /* @noEscape */ $stock ?> > <?= /* @noEscape */ $stockStatus['lowStockQty'] ?> 
-        && <?= /* @noEscape */ $stock ?> <= <?= /* @noEscape */ $stockStatus['mediumStockQty'] ?>) {
-        progressBarInner.style.width = <?= /* @noEscape */ $stockStatus['mediumStockQty'] ?> + "%";
-        progressBarInner.style.backgroundColor = "<?= /* @noEscape */ $stockStatus['mediumStockColour'] ?>";
-        progressLabel.innerHTML = "<?= /* @noEscape */ str_replace("%", $stock, $stockStatus['mediumstockError']) ?>";
-        progressIcon.style.color = "<?= /* @noEscape */ $stockStatus['mediumStockColour'] ?>";
-		progressIcon.style.content = "url('<?= /* @noEscape */ $block->getViewFileUrl('Mindsprint_StockStatus::images/grey-stock.svg'); ?>')";
-    } else if (<?= /* @noEscape */ $stock ?> > 0 
-        && <?= /* @noEscape */ $stock ?> <= <?= /* @noEscape */ $stockStatus['lowStockQty'] ?>) {
-        progressBarInner.style.width = <?= /* @noEscape */ $stockStatus['lowStockQty'] ?> + "%";
-        progressBarInner.style.backgroundColor = "<?= /* @noEscape */ $stockStatus['lowStockColour'] ?>";
-        progressLabel.innerHTML = "<?= /* @noEscape */ str_replace("%", $stock, $stockStatus['lowstockError']) ?>";
-        progressIcon.style.color = "<?= /* @noEscape */ $stockStatus['lowStockColour'] ?>";
+	} else if (stockLevel > <?= /* @noEscape */ $stockStatus['lowStockQty'] ?> && stockLevel <= <?= /* @noEscape */ $stockStatus['mediumStockQty'] ?>) {
+		progressBarInner.style.backgroundColor = "<?= /* @noEscape */ $stockStatus['mediumStockColour'] ?>";
+		progressLabel.innerHTML = "<?= /* @noEscape */ str_replace("%", $stock, $stockStatus['mediumstockError']) ?>";
 		progressIcon.style.content = "url('<?= /* @noEscape */ $block->getViewFileUrl('Mindsprint_StockStatus::images/orange-stock.svg'); ?>')";
-    } else {
-        progressBarInner.style.width = <?= /* @noEscape */ $stockStatus['stock'] ?> + "%";
-        progressBarInner.style.backgroundColor = "<?= /* @noEscape */ $stockStatus['outofStockColour'] ?>";
-        progressLabel.innerHTML = "<?= /* @noEscape */ str_replace("%", $stock, $stockStatus['outofStockError']) ?>";
-        progressIcon.style.color = "<?= /* @noEscape */ $stockStatus['outofStockColour'] ?>";
+	} else if (stockLevel >= 1 && stockLevel <= <?= /* @noEscape */ $stockStatus['lowStockQty'] ?>) {
+		progressBarInner.style.backgroundColor = "<?= /* @noEscape */ $stockStatus['lowStockColour'] ?>";
+		progressLabel.innerHTML = "<?= /* @noEscape */ str_replace("%", $stock, $stockStatus['lowstockError']) ?>";
 		progressIcon.style.content = "url('<?= /* @noEscape */ $block->getViewFileUrl('Mindsprint_StockStatus::images/red-stock.svg'); ?>')";
-    }
+	} else {
+		progressBarInner.style.backgroundColor = "<?= /* @noEscape */ $stockStatus['outofStockColour'] ?>";
+		progressLabel.innerHTML = "<?= /* @noEscape */ str_replace("%", $stock, $stockStatus['outofStockError']) ?>";
+		progressIcon.style.content = "url('<?= /* @noEscape */ $block->getViewFileUrl('Mindsprint_StockStatus::images/grey-stock.svg'); ?>')";
+	}
 }
 setProgress(stockLevel);
 </script>
